@@ -1,0 +1,196 @@
+<!-- /header -->
+<%- include("../conn/header.ejs") %> 
+<%- include("../conn/top.ejs") %>
+<!-- Main Sidebar Container -->
+<%- include("../conn/navebar.ejs") %>
+
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8">
+          <div class="card card-primary">
+            <div class="card-header">
+              <h3 class="card-title">Add Package</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <form
+                action="/guide/addpackage"
+                enctype="multipart/form-data"
+                method="post"
+              >
+                <div class="row">
+                  <div class="col-sm-12">
+                    <!-- text input -->
+                    <div class="form-group">
+                      <label>Package Name</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Enter ..."
+                        name="pname"
+                         required
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-12">
+                    <!-- textarea -->
+                    <div class="form-group">
+                      <label>Package Description</label>
+                  
+                      <textarea  required  class="form-control" name="pdesc" rows="5" cols="100"></textarea>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-sm-12">
+                    <!-- textarea -->
+                    <div class="form-group">
+                      <label>Tour Itinerary</label>
+                      <textarea required  class="form-control" rows="5" cols="100" name="pinitary"></textarea>
+                    </div>
+                  </div>
+                </div>
+                <!-- input states -->
+                <div class="row">
+                  <div class="col-sm-12">
+                    <!-- text input -->
+                    <div class="form-group">
+                      <label>Package Slot</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Enter ..."
+                        name="pslot"
+                        required
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-12">
+                    <!-- text input -->
+                    <div class="form-group">
+                      <label>Starting Date</label>
+                      <input
+                        type="date"
+                        class="form-control"
+                        placeholder="Enter ..."
+                        required
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-sm-12">
+                    <!-- text input -->
+                    <div class="form-group">
+                      <label>End Date</label>
+                      <input
+                        type="date"
+                        class="form-control"
+                        placeholder="Enter ..."
+                        required
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-12">
+                    <!-- text input -->
+                    <div class="form-group">
+                      <label>Package Duration</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Enter ..."
+                        name="pduration"
+                        required
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>Route</label>
+                  <select
+                    class="select2"
+                    multiple="multiple"
+                    data-placeholder="Select a State"
+                    style="width: 100%"
+                    name="proutes"
+                    required
+                  >
+                  <option>Vancouver</option>
+                  <option>Halifax</option>
+                  <option>Toronto</option>
+                  <option>Waterloo</option>
+                  <option>Qubec</option>
+                  <option>Texas</option>
+                  <option>Washington</option>
+                  <option>Chicago</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="exampleInputFile">Image Upload</label>
+                  <div class="input-group">
+                    <div class="custom-file">
+                      <input
+                        type="file"
+                        class="custom-file-input"
+                        id="exampleInputFile"
+                        name="pimage"
+                      />
+                      <label required class="custom-file-label" for="exampleInputFile"
+                        >Choose file</label
+                      >
+                    </div>
+                    <!-- <div class="input-group-append">
+                      <span class="input-group-text">Upload</span>
+                    </div> -->
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-12">
+                    <!-- text input -->
+                    <div class="form-group">
+                      <label>Package Price</label>
+                      <input
+                        type="number"
+                        class="form-control"
+                        placeholder="Enter ..."
+                        name="pprice"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-primary">
+                    Add Package
+                  </button>
+                </div>
+              </form>
+            </div>
+            <!-- /.card-body -->
+          </div>
+        </div>
+        <div class="col-sm-2"></div>
+      </div>
+    </div>
+    <!-- /.container-fluid -->
+  </section>
+
+  <!-- Main content -->
+
+  <!-- /.content -->
+</div>
+<!-- /Footer -->
+<%- include("../conn/copyright.ejs") %>
+ <%- include("../conn/footer.ejs") %>

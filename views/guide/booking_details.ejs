@@ -1,0 +1,94 @@
+<!-- /header -->
+<%- include("../conn/header.ejs") %> <%- include("../conn/top.ejs") %>
+<!-- Main Sidebar Container -->
+<%- include("../conn/navebar.ejs") %>
+
+<!-- Main Start -->
+
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <h3>
+                Booking Details of
+                <a href="/package/<%=package._id %>"
+                  ><strong><%=package.packageTitle %></strong></a
+                >
+              </h3>
+            </div>
+          </div>
+          <!-- /.card -->
+
+          <div class="card">
+            <!-- /.card-header -->
+            <div class="card-body">
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th>Id</th>
+                    <th>Booked By</th>
+                    <th>Contact No</th>
+                    <th>Passengers Name</th>
+                    
+                    <th>Booked Sloat</th>
+                    <th>Booking Date</th>
+                    <th>Invoice</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% if(package.booked.length>0){ %>
+                    <% for(var i =0; i<package.booked.length; i++) {%>
+                  <tr>
+                    <td><%=i+1 %></td>
+                    <td><%=package.booked[i].tourist.touristName %></td>
+                   
+                    <td><%=package.booked[i].contactNo %></td>
+                    <% var passengers = "" %>
+                    <% package.booked[i].passengerDetails.forEach(function(passenger){ %>
+                    <% passengers += passenger.name + ", " %>
+                    <% }) %>
+                    <td><%=passengers %></td>
+                    <td><%=package.booked[i].passengerDetails.length %></td>
+                    <% var  eventDate = new Date(package.booked[i].createdAt); %>
+                    <%let dates = JSON.stringify(eventDate) %>
+                   <% dates = dates.slice(1,11) %>
+                       <td><%=dates %></td>
+                    <td>
+                      <form action="/guide/invoice" method="post">
+                        <input type="hidden" name="bookedId" value="<%=package.booked[i]._id %>">
+                    
+                      <button type="submit" class="btn-sm btn-block bg-gradient-grey  " >Invoice</button>
+                      </form>
+                    </td>
+                  </tr>
+                  <% } %>
+                  <% }else{ %>
+                  <tr>
+                    <td colspan="6" class="text-center">No Booking</td>
+                  </tr>
+                  <% } %>
+                </tbody>
+              </table>
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+  </section>
+
+  <!-- Main content -->
+
+  <!-- /.content -->
+</div>
+<!-- main End -->
+<!-- /Footer -->
+<%- include("../conn/copyright.ejs") %> <%- include("../conn/footer.ejs") %>

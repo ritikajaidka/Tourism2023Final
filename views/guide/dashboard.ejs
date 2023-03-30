@@ -1,0 +1,95 @@
+<!-- /header -->
+<%- include("../conn/header.ejs") %> <%- include("../conn/top.ejs") %>
+<!-- Main Sidebar Container -->
+<%- include("../conn/navebar.ejs") %>
+
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-12">
+         
+          <div>
+            <canvas
+              id="myChart"
+              width="700"
+              height="300"
+              aria-label="chart"
+              role="img"
+            ></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /.container-fluid -->
+  </section>
+</div>
+<!-- /Footer -->
+<%- include("../conn/copyright.ejs") %>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+  const blogLabels = "<%=blogLabels%>";
+  const blogLikes = "<%=likes%>";
+  const blogDislikes = "<%=dislikes%>";
+  var ctx = document.getElementById("myChart").getContext("2d");
+  var myChart = new Chart(ctx, {
+    type: "bar",
+    data: {
+      labels: blogLabels.split(","),
+      datasets: [
+        {
+          label: "Like",
+          data: blogLikes.split(","),
+          // Background Color
+          backgroundColor: [
+            "rgba(255, 99, 132, 0.2)",
+            "rgba(54, 162, 235, 0.2)",
+            "rgba(255, 206, 86, 0.2)",
+            "rgba(75, 192, 192, 0.2)",
+            "rgba(153, 102, 255, 0.2)",
+            "rgba(255, 159, 64, 0.2)",
+          ],
+          // Border Color
+          borderColor: [
+            "rgba(255, 99, 132, 1)",
+            "rgba(54, 162, 235, 1)",
+            "rgba(255, 206, 86, 1)",
+            "rgba(75, 192, 192, 1)",
+            "rgba(153, 102, 255, 1)",
+            "rgba(255, 159, 64, 1)",
+          ],
+
+          // Border Width
+          borderWidth: 1,
+        },
+        //Data Set 2
+        {
+          //  Chart Label
+          label: "Dislike",
+          data: blogDislikes.split(","),
+
+          // Background Color
+          backgroundColor: [
+            "rgba(255, 97, 132, 0.2)",
+            "rgba(54, 16, 235, 0.2)",
+            "rgba(255, 26, 86, 0.2)",
+            "rgba(75, 12, 192, 0.2)",
+            "rgba(153, 2, 255, 0.2)",
+            "rgba(255, 19, 64, 0.2)",
+          ],
+        },
+      ],
+    },
+
+    options: {
+      animation: {
+        duration: 2000,
+        easing: "easeInOutBounce",
+      },
+    },
+  });
+</script>
+<%- include("../conn/footer.ejs") %>

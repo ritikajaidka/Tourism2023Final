@@ -1,0 +1,297 @@
+<%- include("./conn/header.ejs") %>
+<!-- Nav Bar Start -->
+<%- include("./frontviewComm/navbar.ejs") %>
+<!-- NavBar  End -->
+<style>
+  .blog__details__btns__item a {
+    font-size: 16px;
+    color: #111111;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+  .blog__details__btns__item {
+    margin-bottom: 20px;
+  }
+  .blog__details__btns__item a span {
+    font-size: 24px;
+    color: #444444;
+    position: relative;
+    top: 4px;
+    margin-right: 5px;
+  }
+  .blog__details__tags {
+    padding-top: 30px;
+    border-top: 1px solid #e8eff4;
+    margin-top: 40px;
+    margin-bottom: 60px;
+  }
+  .blog__details__tags span {
+    font-size: 16px;
+    color: #111111;
+    font-weight: 600;
+    display: inline-block;
+    margin-right: 25px;
+  }
+  .blog__details__tags a {
+    font-size: 14px;
+    color: #444444;
+    background: #f2f2f2;
+    display: inline-block;
+    padding: 7px 15px 5px;
+    margin-right: 10px;
+  }
+  .blog__details__comment {
+    position: relative;
+  }
+  .blog__details__comment h5 {
+    font-size: 20px;
+    color: #111111;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding-left: 20px;
+    position: relative;
+    margin-bottom: 45px;
+  }
+  .blog__details__comment h5:before {
+    position: absolute;
+    left: 0;
+    top: 5px;
+    height: 14px;
+    width: 10px;
+    background: rgba(226, 108, 12, 0.3);
+    content: "";
+  }
+  .blog__details__comment .primary-btn {
+    background: rgb(12 7 32 / 20%);
+    color: #111111;
+    position: absolute;
+    right: 0;
+    top: -12px;
+  }
+  .primary-btn {
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding: 14px 30px;
+    color: #ffffff;
+    background: #3c4283;
+    letter-spacing: 2px;
+  }
+
+  .blog__details__comment__item {
+    overflow: hidden;
+    margin-bottom: 45px;
+  }
+  .blog__details__comment__item:last-child {
+    margin-bottom: 0;
+  }
+
+  .blog__details__comment__item--reply {
+    padding-left: 50px;
+  }
+
+  .blog__details__comment__item__pic {
+    float: left;
+    margin-right: 30px;
+  }
+  .blog__details__comment__item__pic img {
+    height: 90px;
+    width: 90px;
+    border-radius: 50%;
+  }
+
+  .blog__details__comment__item__text {
+    position: relative;
+    overflow: hidden;
+  }
+  .blog__details__comment__item__text h6 {
+    font-size: 16px;
+    color: #111111;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .blog__details__comment__item__text span {
+    font-size: 14px;
+    color: #888888;
+    display: block;
+    margin-bottom: 14px;
+  }
+  .blog__details__comment__item__text p {
+    color: #444444;
+    margin-bottom: 0;
+  }
+  .blog__details__comment__item__text .blog__details__comment__btns {
+    position: absolute;
+    right: 0;
+    top: 20px;
+  }
+  .blog__details__comment__item__text .blog__details__comment__btns a {
+    font-size: 14px;
+    color: #111111;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-right: 24px;
+    position: relative;
+  }
+  .blog__details__comment__item__text .blog__details__comment__btns a:after {
+    position: absolute;
+    right: -16px;
+    top: -2px;
+    content: "|";
+    color: #888888;
+    font-weight: 500;
+  }
+  .blog__details__comment__item__text
+    .blog__details__comment__btns
+    a:last-child {
+    margin-right: 0;
+  }
+  .blog__details__comment__item__text
+    .blog__details__comment__btns
+    a:last-child:after {
+    display: none;
+  }
+</style>
+<div class="container mt-5" style="max-width: 1400px">
+  <div class="row">
+    <div class="col-lg-9 mb-4">
+      <article>
+        <!-- Post header-->
+        <header class="mb-4">
+          <!-- Post title-->
+          <h1 class="fw-bolder mb-1"><%=blog.blogTitle %></h1>
+          <!-- Post meta content-->
+          <div class="text-muted fst-italic mb-2">
+            <% var eventDate = new Date(blog.createdAt); %> <%let dates =
+            JSON.stringify(eventDate) %> <% dates = dates.slice(1,11) %> Posted
+            on <%=dates %> by <b><%=blog.blogAuthor.guideName %></b>
+          </div>
+          <!-- Post categories-->
+          <%if(blog.blogTag.length>0){ %>
+            <% for(var i=0;i<blog.blogTag.length;i++){%>
+              <a
+                class="badge bg-secondary text-decoration-none link-light"
+                href="/blog/tag/<%=blog.blogTag[i]%>"
+                ><%=blog.blogTag[i]%></a
+              >
+              <%}%>
+          <%}else{%>
+          <a
+            class="badge bg-secondary text-decoration-none link-light"
+            href="/blog/tag/latest"
+            >Latest</a>
+          <%}%>
+        </header>
+        <!-- Preview image figure-->
+        <img
+          src="/profile/<%=blog.blogImage %>"
+          alt="card__image"
+          class="card__image img_blog"
+          width="1000"
+          height="400"
+        />
+
+        <!-- Post content-->
+        <section class="mt-5">
+          <p>
+            <%=blog.blogContent %>
+          </p>
+        </section>
+      </article>
+
+      <div class="row" style="flex-direction: row">
+        <div class="col-lg-9">
+          <div class="blog__details__tags">
+            <span>Tag</span>
+            <% for(var i=0;i<blog.blogTag.length;i++){%>
+              <a style="text-decoration: none" href="/blog/tag/<%=blog.blogTag[i]%>"><%=blog.blogTag[i]%></a>
+              <%}%>
+          </div>
+        </div>
+        <div class="col-lg-3 blog__details__tags" style="display: flex">
+          <div
+            class="like col-lg-6"
+            style="justify-content: center; display: flex; align-items: center"
+          >
+            <div class="mr-2"><%=blog.likes %> </div>
+            
+            <%if( isTouristAuth){%>
+              <%if(likedilkeAction ) {%>
+                <%if(likedilkeAction.likedislike === "like") {%>
+                  <i class="fa fa-thumbs-up"></i>
+                  <%}else {%>
+                    <i class="far fa-thumbs-up mr-1"></i>
+                    <%}%>
+                <%}else{%>
+              <i class="far fa-thumbs-up mr-1"></i>
+                <%}%>
+            <form action="/blog/likedislike" method="post">
+              <input type="hidden" name="blogId" value="<%=blog._id%>"> 
+              <input type="hidden" name="likedislike" value="like">
+              <button type="submit" class="btn pl-1 pr-1">Like</button>
+            </form>
+            <%}else{%>
+              <i class="far fa-solid fa-thumbs-up mr-1"></i>
+            <a href="/tourist/login" class="btn pl-1 pr-1" style="background: none;">Like</a>
+           
+            <%}%>
+          </div>
+
+          <div
+            class="dislike col-lg-6"
+            style="justify-content: center; display: flex; align-items: center"
+          >
+
+            <div class="mr-2"><%=blog.dislikes %></div>
+           
+            <%if( isTouristAuth){%>
+              <%if(likedilkeAction ) {%>
+                <%if(likedilkeAction.likedislike === "dislike") {%>
+                  <i class="fa fa-thumbs-down"></i>
+                  <%}else{%>
+                    <i class="far fa-thumbs-down"></i>
+                    <%}%>
+                <%}else{%>
+              <i class="far fa-thumbs-down"></i>
+                <%}%>
+            <form action="/blog/likedislike" method="post">
+              <input type="hidden" name="blogId" value="<%=blog._id%>">
+              <input type="hidden" name="likedislike" value="dislike">
+              <button type="submit" class="btn pl-1 pr-1">Dislike</button>
+            </form>
+            <%}else{%>
+              <i class="far fa-thumbs-down"></i>
+            <a href="/tourist/login" class="btn pl-1 pr-1" style="background: none;">Dislike</a>
+           
+            <%}%>
+          </div>
+        </div>
+      </div>
+    <div class="col-lg-3">
+      <div class="card mb-4">
+        <div class="card-header">Search</div>
+        <div class="card-body">
+          <div class="input-group">
+            <input
+              class="form-control"
+              type="text"
+              placeholder="Enter search term..."
+              aria-label="Enter search term..."
+              aria-describedby="button-search"
+            />
+            <button class="btn btn-primary" id="button-search" type="button">
+              Go!
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Footer Start -->
+<%- include("./frontviewComm/footer.ejs") %>
+<!-- Footer End -->

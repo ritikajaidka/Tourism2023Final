@@ -1,0 +1,185 @@
+<%- include("../conn/header.ejs") %>
+ <style>
+    .package_image_img{
+            max-width: 300px;
+    }
+    .package_content{
+        display: flex;
+        flex-direction: column;
+        max-width: 600px;
+        margin-left: 20px;
+         line-height: 1.7rem;
+
+    }
+    .package_booking{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        max-width: 300px;
+    }
+    .heading_package{
+       border-bottom: 2px  dotted grey;
+    }
+    .package_dureastion{
+       margin-top:8px;
+    }
+    .package_location{
+        margin-top: 8px;
+    }
+    .author-stars {
+    display: flex;
+    flex-direction: column;
+ 
+    align-items: center;
+    justify-content: center;
+    
+}
+    .type-price {
+	display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+ </style>
+<%- include("../frontviewComm/navbar.ejs") %>
+ <div class="container" style="min-height:100vh;">
+   <div class="card">
+      <div class="card-body pt-5 mt-5" style="display: flex; justify-content: space-evenly;">
+         <div class="package_image" >
+         <img class="package_image_img" src="/profile/<%=pack.packageImage %>" alt="">
+         </div>
+         <div class="package_content">
+               <h5 class="heading_package">
+                <%= pack.packageTitle %>
+               </h5>
+               <div class="package_location"><i class="fas fa-location-arrow">
+                  <% var locations = "" %>
+                  <% pack.packageRoutes.forEach(function(location){ %>
+                     <% locations += location + ", " %>
+                  <% }) %>
+               <%=locations %>
+               </i></div>
+
+               <div class="package_dureastion"> <i class="fas fa-clock"></i><%=pack.packageDuration %></div>
+               <div class="package_para">
+                  <p class="package_details">
+                     <%= pack.packageDescription %>
+                  </p>
+               </div>
+         </div>
+         <div class="author-stars" >
+            <div class="author">
+               <h6  style="font-size: 14px; font-weight: bold;"> Starting from </h6>
+            </div>
+               <div class="type-price">
+                  <span class="price " style="font-weight: bold;"><span class="dollar">$</span><%=pack.packagePrice %></span>
+               </div>
+                  <a href="/booking" class="btn" style="background-color: rgb(249, 200, 37);" > Book Now</a>
+      </div>
+      </div>
+   </div>
+      <nav>
+         <div class="nav nav-tabs" id="nav-tab" role="tablist">
+         <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-overview" role="tab" aria-controls="nav-home" aria-selected="true">Overview</a>
+         <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-Itinerary" role="tab" aria-controls="nav-profile" aria-selected="false">Itinerary</a>
+         <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-Inclusion" role="tab" aria-controls="nav-contact" aria-selected="false">Inclusion</a>
+         <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-Terms" role="tab" aria-controls="nav-contact" aria-selected="false">Terms & Conditions</a>
+         <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Contact us</a>
+         </div>
+      </nav>
+      <div class="tab-content" id="nav-tabContent">
+         <div class="tab-pane fade show active" id="nav-overview" role="tabpanel" aria-labelledby="nav-home-tab">
+         <%=pack.packageDescription %>  
+         </div>
+         <div class="tab-pane fade show active" id="nav-Itinerary" role="tabpanel" aria-labelledby="nav-home-tab">
+            <%=pack.packageItinerary %>  
+            </div>
+         
+
+
+         </div>
+         <div class="tab-pane fade" id="nav-Terms" role="tabpanel" aria-labelledby="nav-contact-tab">
+            <h4 class="terms_heading mt-2"style="color:rgb(26, 34, 34)">Terms and Conditions:</h4>
+             <ul class="pl-5 pr-5">
+               <li>All Guests are requested to carry government issued photo ID.</li>
+               </ul>
+         </div>
+         <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+            <h6 class="terms_heading mt-2"style="text-align:center;  color:rgb(26, 34, 34); ">Contact for booking:</h6>
+            <div class="content_details pr-5 pl-5 mt-3">
+               <table border="2px solid black">
+                  <tbody></tbody>
+                   <tr>
+                     <td class="p-3" width:"50">
+                       <p style="text-align:center">
+                           <span style="font-weight: bold;">Provincial Office (Calgary)</span>
+                           <br>
+                          <span>2788 North Road,</span>
+                          <br>
+                          <span>Calgary, Alberta - S4S 1V8.</span>
+                          <br>
+                          <span> Phone: 306 123 0005, 639 111 2222</span>
+                          <br>
+                          <span>E-mail: - Wanderlust[@]gmail[dot]com</span>
+       
+                      </p>
+                      
+                     </td>
+                     <td class="p-3">
+                       <p style="text-align:center">
+                          <span style="font-weight: bold;">Tourist Information & Facilitation Centre (Banff)</span>
+                          <br>
+                          <span>1510 Banf Street,</span>
+                          <br>
+                          <span>Canmore, Alberta - S41 9E4.</span>
+                          <br>
+                          <span> Phone: 306 123 1234, 306 111 4567</span>
+                          <br>
+                          <span>E-mail: - Wanderlustalberta[@]gmail[dot]com</span>
+       
+                      </p>
+                     </td>
+                   </tr>
+                   <tr>
+                    <td class="p-3">
+                       <p style="text-align:center">
+                          <span style="font-weight: bold;">Tourist Information & Facilitation Centre (Toronto)</span>
+                           <br>
+                          <span>50 King Street,</span>
+                          <br>
+                          <span>Toronto, Ontario - T5P 1L6.</span>
+                          <br>
+                          <span> Telephone: 204 111 1111, 204 123 4444</span>
+                          <br>
+                          <span>E-mail: - wanderlusttoronto[@]gmail[dot]com</span>
+       
+                      </p>
+                    </td>
+                    <td class="p-3">
+                       <p style="text-align:center">
+                          <span style="font-weight: bold;">Tourist Information & Facilitation Centre (Vancouver)</span>
+                          <br>
+                           <span>250 Queen Street,</span>
+                           <br>
+                           <span>Victoria, British Colombia - H6C 1K6.</span>
+                           <br>
+                           <span> Telephone: 250 123 1234, 250 111 1224</span>
+                           <br>
+                           <span>E-mail: - wanderlustbc[@]gmail[dot]com</span>
+        
+                       </p>
+                    </td>
+                  </tr>
+              </table>
+            </div>
+
+         </div>
+
+      </div>
+ </div>
+
+
+ <%- include("../frontviewComm/footer.ejs") %>
+<%- include("../conn/footer.ejs") %>

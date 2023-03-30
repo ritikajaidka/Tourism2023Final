@@ -1,0 +1,67 @@
+<!-- /header -->
+<%- include("../conn/header.ejs") %>
+<!-- Main Sidebar Container -->
+
+<!-- Content Header (Page header) -->
+<body class="hold-transition register-page">
+  <div class="login-box">
+    <div class="login-logo">
+      <a href="/"><b>Wanderlust</b></a>
+    </div>
+    <!-- /.login-logo -->
+    <div class="card">
+      <div class="card-body login-card-body">
+        <p class="login-box-msg"><strong>Tourist</strong> Login Panel</p>
+
+        <form action="/tourist/login" method="post">
+          <div class="input-group mb-3">
+            <input
+              type="email"
+              class="form-control"
+              placeholder="Email"
+              name="temail"
+            />
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-envelope"></span>
+              </div>
+            </div>
+          </div>
+          <div class="input-group mb-3">
+            <input
+              type="password"
+              class="form-control"
+              placeholder="Password"
+              name="tpass"
+            />
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-lock"></span>
+              </div>
+            </div>
+          </div>
+          <input type="hidden" name="prevPage" value="<%=prevPage %>" />
+          <div class="row">
+            <div class="col-4">
+              <button type="submit" class="btn btn-primary btn-block">
+                Sign In
+              </button>
+            </div>
+            <div class="col-8" style="text-align: end">
+              <div class="icheck-primary">
+                <input type="checkbox" id="remember" />
+                <label for="remember"> Remember Me </label>
+              </div>
+            </div>
+          </div>
+        </form>
+
+        <p class="mb-3">
+          <a href="/tourist/signup">Register</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</body>
+<!-- /Footer -->
+<%- include("../conn/footer.ejs") %>

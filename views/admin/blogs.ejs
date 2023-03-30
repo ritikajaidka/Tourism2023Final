@@ -1,0 +1,153 @@
+<%- include("../conn/header.ejs") %> <%- include("../conn/top.ejs") %>
+<!-- Main Sidebar Container -->
+<%- include("./navbar.ejs") %>
+
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <h3>Blogs List</h3>
+              <p>You can accept or disproved the blog request!</p>
+            </div>
+          </div>
+          <!-- /.card -->
+
+          <div class="card">
+            <!-- /.card-header -->
+            <div class="card-body">
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th>Id</th>
+                    <th>Blog Name</th>
+                    <th>Posted By</th>
+                    <th>Date</th>
+                    <th>Like/dislike</th>
+                    <th>Status</th>
+                    <th>View</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% if(blogs.length>0){ %>
+                  <% for(var i=0; i<blogs.length; i++){ %>
+                  <tr>
+                    <td><%=i+1  %></td>
+                    <td><%=blogs[i].blogTitle %></td>
+                    <td><%=blogs[i].blogAuthor.guideName %></td>
+                    <% var dates = blogs[i].createdAt %>
+                    <td><%=dates %></td>
+                    <td>
+                      <i class="fas fa-thumbs-up"></i> <%=blogs[i].likes %> &nbsp;&nbsp;
+                      <i class="fas fa-thumbs-down"></i> <%=blogs[i].dislikes %>
+                    </td>
+                    <td>
+                      <%if(blogs[i].status==="pending") {%>
+                      <button
+                        style="border: none"
+                        disabled
+                        type="button"
+                        class="btn-sm btn-block bg-gradient-warning text-white"
+                      >
+                        Pending
+                      </button>
+                      <%}else if(blogs[i].status==="approve") {%>
+                      <button
+                        style="border: none"
+                        disabled
+                        type="button"
+                        class="btn-sm btn-block bg-gradient-success text-white"
+                      >Approved</button>
+                      <%}else if(blogs[i].status==="disapprove") {%>
+                      <button
+                        style="border: none"
+                        disabled
+                        type="button"
+                        class="btn-sm btn-block bg-gradient-danger text-white"
+                      >Disapproved</button>
+                      <%} %>
+                    </td>
+                    <td>
+                      <div style="display: flex">
+                        <form action="/admin/blog/view" method="post">
+                          <input type="hidden" name="blogId" value="<%=blogs[i]._id%>" />
+                          <button
+                            style="border: none"
+                            type="submit"
+                            class="btn-sm btn-block bg-gradient-info text-white"
+                          >
+                            View
+                          </button>
+                        </form>
+                      </div>
+                    </td>
+                    <td>
+                      <div style="display: flex; justify-content: space-evenly">
+                        <div class="mr-3">
+                          <% if(blogs[i].status==="pending"){ %>
+                            <form action="/admin/blog/approve" method="post">
+                              <input type="hidden" name="blogId" value="<%=blogs[i]._id%>" />
+                          <button
+                            style="border: none"
+                            type="submit"
+                            
+                            class="btn-sm btn-block bg-gradient-success text-white"
+                          >
+                            Approved
+                          </button>
+                        </form>
+                        </div>
+                        <div>
+                          <form action="/admin/blog/abort" method="post">
+                            <input type="hidden" name="blogId" value="<%=blogs[i]._id%>" />
+                          <button
+                            style="border: none"
+                            
+                            type="submit"
+                            class="btn-sm btn-block bg-gradient-danger text-white"
+                          >
+                            Abort
+                          </button>
+                        </form>
+                          <% }else if(blogs[i].status==="approved"){ %>
+                          <p >Accepted Blog</p>
+                          <% }else if(blogs[i].status==="disapproved"){ %>
+                          <p>Disapproved Blog</p>
+                          <% } %>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <% } %>
+                  <% }else{ %>
+                  <tr>
+                    <td colspan="7" style="text-align: center">
+                      No Blogs Found
+                    </td>
+                  </tr>
+                  <% } %>
+                </tbody>
+              </table>
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+  </section>
+
+  <!-- Main content -->
+
+  <!-- /.content -->
+</div>
+<!-- main End -->
+<!-- /Footer -->
+<%- include("../conn/copyright.ejs") %> <%- include("../conn/footer.ejs") %>

@@ -1,0 +1,492 @@
+<%- include("../conn/header.ejs") %>
+<style>
+
+.section-products {
+	padding-top: 60px;
+    padding-bottom: 60px;
+	background-color: #f5f5f5;
+	font-family: "Roboto Condensed", sans-serif;
+	color: #2a383b;
+    letter-spacing: 0.01em;
+}
+
+.section-products .navigation {
+    display: flex;
+    width: 100%;
+    margin-right: 15px;
+    margin-left: 15px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background-color: #fff;
+    border: 1px solid #ebebeb;
+    border-left: 8px solid #2020f6;
+}
+
+.section-products .navigation .title {
+	font-weight: 700;
+    font-size: 24px;
+}
+
+.section-products .navigation .nav-buttons span {
+	display: inline-block;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    background-color: #01d7b3;
+    color: #fff;
+    font-size: 12px;
+    text-align: center;
+    border-radius: 3px;
+    margin-left: 3px;
+    cursor: pointer;
+    transition: background-color .3s;
+}
+
+.section-products .navigation .nav-buttons span:hover {
+    background-color: #04bfa0;
+}
+
+.section-products .single-product {
+    margin-top: 30px;
+    padding: 5px;
+    background-color: #fff;
+    border: 1px solid #ebebeb;
+    transition: box-shadow .3s;
+    display:  flex;
+}
+
+.section-products .single-product:hover {
+    box-shadow: 0 0 5px 0 rgba(0,0,0,.1);
+}
+
+.section-products .single-product .img-part {
+    position: relative;
+    max-width: 300px;
+}
+
+
+
+.section-products .single-product .img-part .icon-button {
+    display: inline-block;
+    margin-bottom: 7px;
+    color: #fff;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    border-radius: 50%; 
+}
+
+.section-products .single-product .img-part .text-button {
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+}
+
+.section-products .single-product img {
+	width: 100%;
+
+}
+
+.section-products .single-product .product-discraption {
+	position: relative;
+	margin: 22px 0px 22px 40px;
+    padding-bottom: 3px;
+  
+}
+
+.section-products .single-product .product-discraption .tag {
+    position: absolute;
+    top: -46px;
+    left: -32px;
+    display: inline-block;
+    transform: translate(10px, 10px);
+    text-transform: uppercase;
+    font-size: 10px;
+    font-weight: 700;
+    min-width: 40px;
+    text-align: center;
+    padding: 2px 6px;
+    border-radius: 3px;
+    background-color: #ffbf00;
+    color: #fff;
+    letter-spacing: 0.05em;
+}
+
+.section-products .single-product .product-discraption .featured {
+    background-color: #ff0000;
+}
+
+.section-products .single-product .product-discraption .new {
+    background-color: #3fef2a;
+}
+
+.section-products .single-product .product-discraption .hot {
+    background-color: #ff0d3a;
+}
+
+.section-products .single-product .product-discraption .title {
+	margin-bottom: 5px;
+	font-weight: 700;
+	font-size: 18px;
+}
+
+.section-products .single-product .product-discraption .title a {
+    color: #2a383b;
+    text-decoration: none;
+}
+
+.section-products .single-product .product-discraption .description {
+	font-size: 14px;
+}
+
+.section-products .single-product .product-discraption .type-price {
+	display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.section-products .single-product .product-discraption .type-price .type {
+	font-weight: 700;
+    font-size: 14px;
+    color: #01b7d7;
+    text-decoration: none;
+    transition: color .3s;
+}
+
+.section-products .single-product .product-discraption .type-price .type:hover {
+    color: #04bfa0;
+}
+
+.section-products .single-product .product-discraption .type-price .price {
+    font-weight: 700;
+    font-size: 24px;
+}
+
+.section-products .single-product .product-discraption .type-price .dollar {
+    display: inline-block;
+    font-size: 14px;
+    transform: translateY(-3px);
+}
+
+.section-products .single-product .author-stars {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 10px 10px 10px 10px; 
+     
+}
+
+.section-products .single-product .author-stars img {
+	width: 25px;
+    height: 25px;
+    border-radius: 50%;
+}
+
+.section-products .single-product .author-stars .name {
+    margin-left: 2px;
+	color: #2a383b;
+    font-weight: 700;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.section-products .single-product .author-stars .stars i {
+    color: #d0d0d0;
+    font-size: 12px;
+}
+
+.section-products .single-product .author-stars .stars i.active {
+    color: #fec000;
+}
+/*  Filter */
+.panel {
+    border: none;
+    box-shadow: none;
+}
+
+.panel-heading {
+    border-color:#eff2f7 ;
+    font-size: 16px;
+    font-weight: 300;
+}
+
+.panel-title {
+    color: #2A3542;
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 0;
+    margin-top: 0;
+    font-family: 'Open Sans', sans-serif;
+}
+
+
+/*product list*/
+
+.prod-cat li a{
+    border-bottom: 1px dashed #d9d9d9;
+}
+
+.prod-cat li a {
+    color: #3b3b3b;
+}
+
+.prod-cat li ul {
+    margin-left: 30px;
+}
+
+.prod-cat li ul li a{
+    border-bottom:none;
+}
+.prod-cat li ul li a:hover,.prod-cat li ul li a:focus, .prod-cat li ul li.active a , .prod-cat li a:hover,.prod-cat li a:focus, .prod-cat li a.active{
+    background: none;
+    color: #ff7261;
+}
+
+.pro-lab{
+    margin-right: 20px;
+    font-weight: normal;
+}
+
+.pro-sort {
+    padding-right: 20px;
+    float: left;
+}
+
+.pro-page-list {
+    margin: 5px 0 0 0;
+}
+
+.product-list img{
+    width: 100%;
+    border-radius: 4px 4px 0 0;
+    -webkit-border-radius: 4px 4px 0 0;
+}
+
+.product-list .pro-img-box {
+    position: relative;
+}
+.adtocart {
+    background: #fc5959;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    color: #fff;
+    display: inline-block;
+    text-align: center;
+    border: 3px solid #fff;
+    left: 45%;
+    bottom: -25px;
+    position: absolute;
+}
+
+.adtocart i{
+    color: #fff;
+    font-size: 25px;
+    line-height: 42px;
+}
+
+.pro-title {
+    color: #5A5A5A;
+    display: inline-block;
+    margin-top: 20px;
+    font-size: 16px;
+}
+
+.product-list .price {
+    color:#fc5959 ;
+    font-size: 15px;
+}
+
+.pro-img-details {
+    margin-left: -15px;
+}
+
+.pro-img-details img {
+    width: 100%;
+}
+
+.pro-d-title {
+    font-size: 16px;
+    margin-top: 0;
+}
+
+.product_meta {
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    padding: 10px 0;
+    margin: 15px 0;
+}
+
+.product_meta span {
+    display: block;
+    margin-bottom: 10px;
+}
+.product_meta a, .pro-price{
+    color:#fc5959 ;
+}
+
+.pro-price, .amount-old {
+    font-size: 18px;
+    padding: 0 10px;
+}
+
+.amount-old {
+    text-decoration: line-through;
+}
+
+.quantity {
+    width: 120px;
+}
+
+.pro-img-list {
+    margin: 10px 0 0 -15px;
+    width: 100%;
+    display: inline-block;
+}
+
+.pro-img-list a {
+    float: left;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.pro-d-head {
+    font-size: 18px;
+    font-weight: 300;
+}
+ li{
+    list-style: none;
+ }
+</style>
+<%- include("../frontviewComm/navbar.ejs") %>
+  
+   <div class="container-fluid row">
+       <div class="col-lg-3 mt-5">
+        <div class=" card mt-3 ">
+            <!-- <div class="row p-2">
+              <div class="col-md-12">
+                <form action="simple-results.html">
+                  <div class="input-group">
+                    <input type="search" class="form-control" placeholder="Type your keywords here">
+                    <div class="input-group-append">
+                      <button type="submit" class="btn  btn-default">
+                        <i class="fa fa-search"></i>
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div> -->
+          </div>
+          <div class=" card mt-3  p-2">
+            <div class="city"> <h4>All  packages</h4></div>
+             
+
+          </div> <div class=" card mt-3  p-2">
+            <div class="city"> <h4> Packages by well known Guides</h4></div>
+              <ul  style="text-decoration:  none;"  class="p-3">
+                
+              
+                    <li>
+                        <div class="form-check">
+           
+                            <label class="form-check-label">Explore the <a href="/blogs">Blogs</a></label>
+                            </div>
+                     </li>
+                    
+                      <!-- <div class="filter_btn"  style="display: flex; justify-content: end;">
+                        <button class="btn"  style="background-color: rgb(40, 111, 244); color: #ffff;">Filter</button>
+    
+                      </div> -->
+             
+              </ul>
+
+          </div>
+
+          <div class=" card mt-3  p-2">
+            <div class="city"> <h4>Place</h4></div>
+              <ul  style="text-decoration:  none;"  class="p-3">
+            
+                    <li>
+                        <div class="form-check">
+                            
+                            <label class="form-check-label">Visit the world</label>
+                            </div>
+                     </li>
+                  
+                      <!-- <div class="filter_btn"  style="display: flex; justify-content: end;">
+                        <button class="btn"  style="background-color: rgb(40, 111, 244); color: #ffff;">Filter</button>
+    
+                      </div> -->
+             
+              </ul>
+
+          </div>
+
+
+          
+           
+        </div>
+         <div class="col-lg-9 mt-5">
+
+            <section class="section-products">
+                <div class="container">
+                    <div class="row">
+                        <div class="navigation">
+                            <h2 class="title">All Packages</h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                    <% if(packages.length>0){ %>
+                    <% for(var i=0; i<packages.length; i++){ %>
+                        <!-- Single Product -->     
+                        <div class="col-md-6 col-lg-12">
+                            <div class="single-product">
+                                <div class="img-part col-md-6 col-lg-2">
+                                    <img src="/profile/<%=packages[i].packageImage%>" alt="">
+        
+                                </div>
+                                <div class="product-discraption col-lg-7">
+                                  
+                                    <h3 class="title"><a href="/package/<%=packages[i]._id%>"><%=packages[i].packageTitle %></a></h3>
+                                    <p class="description"><%=packages[i].packageDescription.substring(0, 400)  %>..</p>
+                                    <div class="type-price">
+                                        <a href="/package/<%=packages[i]._id%>" class="type">Details</a>
+                                        <!-- <span class="price"><span class="dollar">$</span>14</span> -->
+                                    </div>
+                                </div>
+                                <div class="author-stars col-lg-3">
+                                    <div class="author">
+                                         <h6  style="font-size: 14px; font-weight: bold;"> Starting from </h6>
+                                    </div>
+                                         <div class="type-price">
+                                            <span class="price " style="font-weight: bold;"><span class="dollar">$</span><%=packages[i].packagePrice %></span>
+                                        </div>
+                                           <a  href="/booking/<%=packages[i]._id %>"class="btn" style="background-color: rgb(249, 200, 37);"> Book Now</a>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <!-- / End Single Product -->
+                         <% } %>
+                            <% }else{ %>
+                                <h3 class="m-3">No Packages Found</h3>
+                            <% } %>
+                        <!-- Single Product -->
+                    </div>
+                </div>
+            </section>
+
+         </div>
+       </div>
+        
+   </div>
+
+
+<%- include("../frontviewComm/footer.ejs") %>

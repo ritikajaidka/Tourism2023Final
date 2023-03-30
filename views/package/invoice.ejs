@@ -1,0 +1,117 @@
+<%- include("../conn/header.ejs") %> <%- include("../frontviewComm/navbar.ejs")
+%>
+<style>
+  .invoice {
+    background: #ffffff;
+    border-bottom: 15px solid #1daff8;
+    border-top: 15px solid #1e1f23;
+    margin-top: 8rem;
+    margin-bottom: 30px;
+    padding: 40px 30px !important;
+    position: relative;
+    box-shadow: 0 1px 21px #808080;
+    font-size: 16px;
+    justify-content: center;
+  }
+
+  .invoice thead {
+    background: #1e1f23;
+    color: #fff;
+  }
+</style>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 invoice">
+      <div class="col-md-12">
+        <div class="row" style="justify-content: left">
+          <div class="col-md-3 text-xs-left">
+            <h2 style="color: #1daff8"><strong>Wanderlust</strong></h2>
+          </div>
+        </div>
+        <div class="row" style="justify-content:end">
+          <div class="col-md-3 text-xs">
+          <h4 style="color: #12a3eb"><strong><%=booked.packageId.packageTitle %></strong></h4>
+            <p>Guide Name :<strong><%=booked.packageId.packageGuide.guideName %></strong></p>
+            <p>Guide Address :<strong><%=booked.packageId.packageGuide.guideAddress %></strong></strong></p>
+            <p>Guide contect :<strong><%=booked.packageId.packageGuide.guidePhone %></strong></p>
+            <p>Guide Email:<strong ><%=booked.packageId.packageGuide.guideEmail %></strong></p>
+          </div>
+        </div>
+        <br />
+        <div class="row">
+          <div class="col-md-12 text-xs-center">
+            <h2>INVOICE</h2>
+            <% let bid= booked._id%>
+            <h5 style="text-transform: uppercase"><%=bid %></h5>
+          </div>
+        </div>
+        <br />
+        <div>
+          <table class="table">
+            <thead>
+              <tr>
+                <th><h5>Route</h5></th>
+                <th><h5>Package No</h5></th>
+                <th><h5>Amount</h5></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <% var locations = "" %> <%
+                booked.packageId.packageRoutes.forEach(function(location){ %> <%
+                locations += location + ", " %> <% }) %>
+
+                <td class="col-md-7">Locations : <%=locations %></td>
+                <td class="col-md-2"><%=booked.passengerDetails.length %> X</td>
+                <td class="col-md-3">
+                  <i class="fa fa-usd" aria-hidden="true"></i>
+                  <%=booked.packageId.packagePrice %>
+                </td>
+              </tr>
+              <tr>
+                <td class="col-md-7">Passengers</td>
+                <% var passengers = "" %> <%
+                booked.passengerDetails.forEach(function(passenger){ %> <%
+                passengers += passenger.name + ", " %> <% }) %>
+
+                <td class="col-md-2"><strong><%=passengers%></strong></td>
+              </tr>
+              <tr>
+                <td class="text-xs-right">
+                  <p><strong>Total Amount: </strong></p>
+                </td>
+                <td></td>
+                <td>
+                  <p>
+                    <strong
+                      ><i class="fa fa-usd" aria-hidden="true"></i>
+                      <%=booked.totalAmount %>
+                    </strong>
+                  </p>
+                </td>
+              </tr>
+              <tr style="color: #1daff8">
+                <td class="text-xs-right">
+                  <h4><strong>Total:</strong></h4>
+                </td>
+                <td></td>
+                <td class="text-xs-left">
+                  <h4><strong>$ <%=booked.totalAmount %> </strong></h4>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div>
+          <div class="col-md-12">
+            <% var eventDate = new Date(booked.createdAt); %> <%let dates =
+            JSON.stringify(eventDate) %> <% dates = dates.slice(1,11) %>
+
+            <p><b>Date : <%=dates %></b></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

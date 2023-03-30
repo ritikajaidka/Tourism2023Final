@@ -1,0 +1,130 @@
+<!-- /header -->
+<%- include("../conn/header.ejs") %> <%- include("../conn/top.ejs") %>
+<!-- Main Sidebar Container -->
+<%- include("../conn/navebar.ejs") %>
+
+<!-- Main Start -->
+
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <h3>All Blog List</h3>
+            </div>
+          </div>
+          <!-- /.card -->
+
+          <div class="card">
+            <!-- /.card-header -->
+            <div class="card-body">
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th>Id</th>
+                    <th>Blog name</th>
+                    <th>Blog Description</th>
+                    <th>Tags</th>
+                    <th>Image</th>
+                    <th>Post Date</th>
+                    <th>Like/Dislike</th>
+                    <th>Status</th>
+                    <th>Comment</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% if(blogs.length>0){ %>
+                  <% for(var i=0; i<blogs.length; i++){ %>
+                  <tr>
+                    <td><%=i+1 %></td>
+                    <td><%= blogs[i].blogTitle %></td>
+                    <td>
+                      
+                      <%=blogs[i].blogContent.substring(0, 200) %>
+                    </td>
+                    <% var tags =""; %>
+                    <% blogs[i].blogTag.forEach(bt=>{ %>
+                    <% tags += bt + ", "; %>
+                    <% }) %>
+                    <td><%= tags %></td>
+                    
+                    <td><img src="/profile/<%=blogs[i].blogImage %>" width="50px" height="50px" /></td>
+                    <% var dates = blogs[i].createdAt%>
+                    <td><%=dates %></td>
+                    <td>
+                      <i class="fas fa-thumbs-up"></i> <%=blogs[i].likes %> &nbsp;&nbsp;
+                      <i class="fas fa-thumbs-down"></i> <%=blogs[i].dislikes %>
+                    </td>
+                    <td>
+                      <% if(blogs[i].status == "pending"){ %>
+                       <button   style=" border: none;" type="button" class="btn-sm btn-block bg-gradient-warning  text-white" >Pending</button></td>
+                      <% }else if(blogs[i].status == "approved"){ %>
+                      <button   style=" border: none;" type="button" class="btn-sm btn-block bg-gradient-success  text-white" >Active</button></td>
+                      <% }else{ %>
+                      <button   style=" border: none;" type="button" class="btn-sm btn-block bg-gradient-danger  text-white" >Disapproved</button></td>
+                      <% } %>
+                    <td><%=blogs[i].comments.length %></td>
+                    <td>
+                      <div style="display: flex">
+
+                        <form action="/guide/blog/view" method="post">
+                          <input name="blogId" value="<%=blogs[i]._id %>" hidden />
+                          <button
+                            type="submit"
+                            class="btn btn-block bg-gradient-primary text-white"
+                            
+                          >
+                            View
+                          </button>
+                        </form>
+                     
+                       
+                        <button
+                          type="button"
+                          class="btn btn-block bg-gradient-warning ml-2 text-white"
+                        >
+                          Edit
+                        </button>
+                        <form action="/guide/deleteblog" method="post">
+                          <input name="bId" value="<%=blogs[i]._id %>" hidden />
+                          <button
+                            type="submit"
+                            class="btn btn-block bg-gradient-danger ml-2 text-white"
+                          >
+                            Delete
+                          </button>
+                        </form>
+                      </div>
+                    </td>
+                  </tr>
+                  <% } %>
+                  <% }else{ %>
+                  <tr>
+                    <td colspan="9" class="text-center">No Blog Found</td>
+                  </tr>
+                  <% } %>
+                </tbody>
+              </table>
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+  </section>
+
+  <!-- Main content -->
+
+  <!-- /.content -->
+</div>
+<!-- main End -->
+<!-- /Footer -->
+<%- include("../conn/copyright.ejs") %> <%- include("../conn/footer.ejs") %>

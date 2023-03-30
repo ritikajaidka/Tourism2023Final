@@ -1,0 +1,98 @@
+<!-- /header -->
+<%- include("../conn/header.ejs") %> 
+<%- include("../conn/top.ejs") %>
+<!-- Main Sidebar Container -->
+<%- include("./navebar.ejs") %>
+
+<!-- Main Start -->
+
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <h3>Package</h3>
+            </div>
+          </div>
+          <!-- /.card -->
+
+          <div class="card">
+            <!-- /.card-header -->
+            <div class="card-body">
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th>Id</th>
+                    <th>Package Name</th>
+                    <th>Booked Date</th>
+                    <th>Price</th>
+                    <th>Destinations</th>
+                    <th>Passenger Details</th>
+                    <th>Invoice</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  
+                  <% if(tourist.booked.length>0){ %>
+                  <% for(var i=0;i<tourist.booked.length;i++){ %>
+                  <tr>
+                    <td><%=i+1 %></td>
+                    <td><%=tourist.booked[i].packageId.packageTitle %></td>
+                    <% var  eventDate = new Date(tourist.booked[i].createdAt); %>
+                 <%let dates = JSON.stringify(eventDate) %>
+                <% dates = dates.slice(1,11) %>
+                    <td><%=dates %></td>
+                    <td><%=tourist.booked[i].totalAmount %></td>
+                    <% var locations = "" %>
+                    <% tourist.booked[i].packageId.packageRoutes.forEach(function(location){ %>
+                       <% locations += location + ", " %>
+                    <% }) %>
+                 <td><%=locations %></td>
+                    <% var passengers="" %>
+                    <% tourist.booked[i].passengerDetails.forEach(function(passenger){ %>
+                       <% passengers += passenger.name + ", " %>
+                    <% }) %>
+                  <td><%=passengers %></td>
+                  
+                    <td>
+                      <div style="display: flex;">
+                        <form action="/tourist/invoice" method="post">
+                          <input type="hidden" name="bookedId" value="<%=tourist.booked[i]._id %>">
+                      
+                        <button type="submit" class="btn-sm btn-block bg-gradient-warning  text-white" >Invoice</button>
+                        </form>
+                      </div>
+                    </td>
+                  </tr>
+                  <% } %>
+                  <% }else{ %>
+                  <tr>
+                    <td colspan="7" class="text-center">No Package Booked</td>
+                  </tr>
+                  <% } %>
+
+                </tbody>
+              </table>
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+  </section>
+
+  <!-- Main content -->
+
+  <!-- /.content -->
+</div>
+<!-- main End -->
+<!-- /Footer -->
+<%- include("../conn/copyright.ejs") %> 
+<%- include("../conn/footer.ejs") %>

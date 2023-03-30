@@ -1,0 +1,67 @@
+<!-- /header -->
+<%- include("../conn/header.ejs") %> 
+<%- include("../conn/top.ejs") %>
+<!-- Main Sidebar Container -->
+<%- include("./navbar.ejs") %>
+
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8">
+          <div class="card card-primary">
+            <div class="card-header">
+              <h3 class="card-title">Add Header Carousel Image</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <form
+                action="/admin/addcarouselimage"
+                enctype="multipart/form-data"
+                method="post"
+              >
+                <div class="form-group">
+                  <label for="exampleInputFile">Image Upload</label>
+                  <div class="input-group">
+                    <div class="custom-file">
+                      <input
+                        type="file"
+                        class="custom-file-input"
+                        id="exampleInputFile"
+                        name="cimage"
+                      />
+                      <label class="custom-file-label" for="exampleInputFile"
+                        >Choose file</label
+                      >
+                    </div>
+                    <!-- <div class="input-group-append">
+                      <span class="input-group-text">Upload</span>
+                    </div> -->
+                  </div>
+                </div>
+
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-primary">
+                    Add Image
+                  </button>
+                </div>
+              </form>
+            </div>
+            <!-- /.card-body -->
+          </div>
+        </div>
+        <div class="col-sm-2"></div>
+      </div>
+    </div>
+    <!-- /.container-fluid -->
+  </section>
+
+  <!-- Main content -->
+
+  <!-- /.content -->
+</div>
+<!-- /Footer -->
+<%- include("../conn/copyright.ejs") %>
+ <%- include("../conn/footer.ejs") %>

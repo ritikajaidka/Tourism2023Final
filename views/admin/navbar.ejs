@@ -1,0 +1,112 @@
+<aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-color: #090909!important;">
+    <!-- Brand Logo -->
+    <a href="/" class="brand-link">
+
+      <span class="brand-text font-weight-light" style="font-weight: bold !important;">Wanderlust</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+          <img src=" " class="img-circle elevation-2" alt="User Image">
+        </div>
+        <div class="info">
+          <a href="/admin/dashboard" class="d-block"><%= admin.adminname %> </a>
+        </div>
+      </div>
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul
+          class="nav nav-pills nav-sidebar flex-column"
+          data-widget="treeview"
+          role="menu"
+          data-accordion="false"
+        >
+          <!-- Add icons to the links using the .nav-icon class
+           with font-awesome or any other icon font library -->
+           <li class="nav-item">
+            <a href="/admin/dashboard" class="nav-link">
+              <i class="nav-icon fas fa-home"></i>
+              <p>
+                Home
+                
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>Main Page Section
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="/admin/addcarousel" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Add Carausel</p>
+                </a>
+              </li>
+            
+              <li class="nav-item">
+                <a href="/admin/carousels" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Carausel List</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="/admin/packages" class="nav-link">
+              <i class="nav-icon fas fa-copy"></i>
+              <p>
+                Packages
+                
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/admin/blogs" class="nav-link">
+              <i class="nav-icon fas fa-blog"></i>
+              <p>
+                 Blogs 
+              </p>
+            </a>
+          </li>
+          <a href="/admin/guides" class="nav-link">
+            <i class="nav-icon fa fa-users"></i>
+            <p>
+            <p>
+               Guide List
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="/admin/tourists" class="nav-link">
+            <i class="nav-icon fa fa-users"></i>
+            
+            <p>
+               Tourist List 
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <li class="nav-item">
+            <a href="#" class="nav-link" style="display: flex;">
+              <i class="nav-icon fas fa-power-off"  ></i>
+                 <form action="/admin/logout" method="post">
+                  <button type="submit" class="logout_btn"  style="  outline: none;
+                  background: transparent;
+                  border: none;
+                  color: white;" >Logout</p></button>
+                </form>
+            
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>

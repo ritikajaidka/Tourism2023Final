@@ -1,0 +1,102 @@
+<%- include("../conn/header.ejs") %> <%- include("../conn/top.ejs") %>
+<!-- Main Sidebar Container -->
+<%- include("./navbar.ejs") %>
+
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <h3>Guide List</h3>
+            </div>
+          </div>
+          <!-- /.card -->
+
+          <div class="card">
+            <!-- /.card-header -->
+            <div class="card-body">
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th>Id</th>
+                    <th>Guide Name</th>
+                    <th>Guide Email</th>
+                    <th>No.of Package</th>
+                    <th>No.of Blog</th>
+                    
+                    <th>Date of joining</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% if(guides.length>0){ %>
+                  <% for(var i=0; i<guides.length; i++){  %>
+                  <tr>
+                   
+                    <td><%=i+1 %></td>
+                    <td><%=guides[i].guideName %></td>
+                    <td><%=guides[i].guideEmail %></td>
+                     <td><%=guides[i].packages.length %></td>
+                    <td><%=guides[i].blogs.length %></td>
+                    <% var eventDate = new Date(guides[i].createdAt); %>
+                     <%let dates =JSON.stringify(eventDate) %> <% dates = dates.slice(1,11) %> 
+                    <td><%=dates %></td>
+                    <td>
+                      <% if(guides[i].guideAccepted) {%>
+                      <span class="badge badge-success">Approved</span>
+                      <% }else{ %>
+                      <span class="badge badge-danger">Pending</span>
+                      <% } %> </td>
+                    <td>
+                      <div style="display: flex;justify-content: space-evenly; ">
+                       
+                          <div class=" mr-3">
+                          <form action="/admin/guide/action" method="post"> 
+                            <input type="hidden" name="guideId" value="<%=guides[i]._id%>">
+                            <input type="hidden" name="action" value="approved">
+                            <button  style=" border: none;" type="submit" class="btn-sm btn-block bg-gradient-success  text-white "  > Approved</button>
+                          </form>
+                        </div>
+                        
+                            <div>
+                              <form action="/admin/guide/action" method="post"> 
+                                <input type="hidden" name="guideId" value="<%=guides[i]._id%>">
+                                <input type="hidden" name="action" value="disapproved">
+                                <button  style=" border: none;" type="submit" class="btn-sm btn-block bg-gradient-danger  text-white" > Abort Guide</button>
+                              </form>
+                            </div>
+                        </div>
+                        
+                  </td>
+                  </tr>
+                  <% } %>
+                  <% }else{ %>
+                  <tr>
+                    <td colspan="3">No Guide Found</td>
+                  </tr>
+                  <% } %>
+                </tbody>
+              </table>
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+  </section>
+
+  <!-- Main content -->
+
+  <!-- /.content -->
+</div>
+<!-- main End -->
+<!-- /Footer -->
+<%- include("../conn/copyright.ejs") %> <%- include("../conn/footer.ejs") %>

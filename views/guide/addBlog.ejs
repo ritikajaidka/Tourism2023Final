@@ -1,0 +1,102 @@
+<!-- /header -->
+<%- include("../conn/header.ejs") %> <%- include("../conn/top.ejs") %>
+<!-- Main Sidebar Container -->
+<%- include("../conn/navebar.ejs") %>
+
+<div class="content-wrapper">
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8">
+          <div class="card card-primary">
+            <div class="card-header">
+              <h3 class="card-title">Add Blog</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <form
+                action="/guide/addblog"
+                enctype="multipart/form-data"
+                method="post"
+              >
+                <div class="mb-3">
+                  <label for="exampleFormControlInput1" class="form-label"
+                    >Blog Title</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="title"
+                    placeholder="Enter the Blog Title"
+                    name="btitle"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="exampleFormControlTextarea1" class="form-label"
+                    >Description</label
+                  >
+                  <textarea
+                    class="form-control"
+                    id="Discription"
+                    rows="3"
+                    name="bdesc"
+                    required
+                  ></textarea>
+                </div>
+                <div class="mb-3">
+                  <label for="formFile" class="form-label">Blog Image</label>
+                  <input
+                    class="form-control"
+                    type="file"
+                    id="blogImage1"
+                    required
+                    name="bimage"
+                  />
+                </div>
+
+                <!-- <div class="form-group">
+                <label>Route</label>
+              
+              </div> -->
+                <div class="mb-3">
+                  <label for="exampleFormControlTextarea1" class="form-label"
+                    >Add Tags</label
+                  >
+                  <select
+                    class="select2"
+                    multiple="multiple"
+                    data-placeholder="Select a Tags"
+                    style="width: 100%"
+                    name="btags"
+                    required
+                  >
+                    <option>Latest</option>
+                    <option>tour</option>
+                    <option>travel</option>
+                    <option>tourist</option>
+                    <option>hiking</option>
+                    <option>citytour</option>
+                    <option>nature</option>
+                    <option>love</option>
+                    <option>bike</option>
+                  </select>
+                </div>
+                <div class="submit-btn">
+                  <button type="submit" class="btn btn-primary">
+                    Add Blog
+                  </button>
+                </div>
+              </form>
+            </div>
+            <!-- /.card-body -->
+          </div>
+        </div>
+        <div class="col-sm-2"></div>
+      </div>
+    </div>
+    <!-- /.container-fluid -->
+  </section>
+</div>
+<%- include("../conn/copyright.ejs") %> <%- include("../conn/footer.ejs") %>

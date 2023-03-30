@@ -1,0 +1,138 @@
+<!-- /header -->
+<%- include("../conn/header.ejs") %> <%- include("../conn/top.ejs") %>
+<!-- Main Sidebar Container -->
+<%- include("../conn/navebar.ejs") %>
+<div class="content-wrapper">
+<section class="content">
+  <div class="container mt-3 pt-3">
+    <h1 style="text-align: center" class="mb-3 pb-3">
+      Please Fill The Basic Details First!
+    </h1>
+    <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-8">
+        <form action="/guide/edit-profile" enctype="multipart/form-data" method="post">
+          <div class="form-row">
+            <div class="col-md-6 mb-3">
+              <label for="validationDefault01">Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="validationDefault01"
+                placeholder="Organization"
+                name="name"
+                value="<%=guide.guideName %>"
+                required
+              />
+            </div>
+          <div class="form-row">
+            <div class="col-md-6 mb-3">
+              <label for="validationDefault01">Organization</label>
+              <input
+                type="text"
+                class="form-control"
+                id="validationDefault01"
+                placeholder="Organization"
+                name="organization"
+                value="<%=guide.guideOrganization %>"
+                required
+              />
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="validationDefault01">Education</label>
+              <input
+                type="text"
+                class="form-control"
+                id="validationDefault01"
+                placeholder="Education"
+                name="education"
+                value="<%=guide.guideEducation %>"
+                required
+              />
+            </div>
+          </div>
+          
+            <div class="col-md-6 mb-3">
+              <label for="validationDefault01">Country</label>
+              <input
+                type="text"
+                class="form-control"
+                id="validationDefault01"
+                placeholder="Country"
+                name="country"
+                value="<%=guide.guideCountry %>"
+                required
+              />
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="validationDefault02">Contact Number</label>
+              <input
+                type="phone"
+                class="form-control"
+                id="validationDefault02"
+                placeholder="Content Details"
+                name="contact"
+                value="<%=guide.guidePhone %>"
+                required
+              />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col-md-6 mb-3">
+              <label for="validationDefault03">Address</label>
+              <input
+                type="text"
+                class="form-control"
+                id="validationDefault03"
+                placeholder="Address"
+                value="<%=guide.guideAddress %>"
+                name="address"
+                required
+              />
+            </div>
+            <div class="col-md-3 mb-3">
+              <label for="validationDefault04">City</label>
+              <input
+                type="text"
+                class="form-control"
+                id="validationDefault04"
+                placeholder="city"
+                name="city"
+                value="<%=guide.guideCity %>"
+                required
+              />
+            </div>
+            <div class="col-md-3 mb-3">
+              <label for="validationDefault05">State</label>
+              <input
+                type="text"
+                class="form-control"
+                id="validationDefault05"
+                placeholder="State"
+                name="state"
+                value="<%=guide.guideState %>"
+                required
+              />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col-md-12 mb-3">
+              <label for="validationDefault01">Profile picture</label>
+              <input
+                type="file"
+                class="form-control"
+                name="gimage"
+                
+              />
+            </div>
+          </div>
+          <button class="btn btn-primary" type="submit">Submit</button>
+        </form>
+      </div>
+      <div class="col-md-2"></div>
+    </div>
+  </div>
+</section>
+</div>
+<!-- /Footer -->
+<%- include("../conn/copyright.ejs") %> <%- include("../conn/footer.ejs") %>

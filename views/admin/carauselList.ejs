@@ -1,0 +1,75 @@
+<%- include("../conn/header.ejs") %> <%- include("../conn/top.ejs") %>
+<!-- Main Sidebar Container -->
+<%- include("./navbar.ejs") %>
+
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <h3>Update Carausel</h3>
+            </div>
+          </div>
+          <!-- /.card -->
+
+          <div class="card">
+            <!-- /.card-header -->
+            <div class="card-body">
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th>Id</th>
+                    <th>Carausel </th>
+                    <th>Action</th>
+                   
+                  </tr>
+                </thead>
+                <tbody>
+                  <% if(carousels.length){ %>
+                  <% for(var i=0; i<carousels.length; i++){ %>
+                  <tr>
+                    <td style="    width: 10%;">1</td>
+                    <td  style="    width: 80%;">
+                        <img src="/profile/<%=carousels[i].carouselImage %>" width="100px" alt="carausels"/>
+                    </td >
+                      <td style="    width: 10%;">
+                      <div style="display: flex; ">
+                        <form method="post" action="/admin/carousels/delete">
+                          <input type="hidden" name="id" value="<%=carousels[i]._id %>">
+                        <button   style=" border: none; width: 200px;" type="submit" class="btn-sm btn-block bg-gradient-danger  text-white" >Delete</button>
+                        </form>
+                      </div>
+                    </td>
+                   
+                  </tr>
+                  <% } %>
+                  <% }else{ %>
+                  <tr>
+                    <td colspan="3">No Carausel Found</td>
+                  </tr>
+                  <% } %>
+                </tbody>
+              </table>
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+  </section>
+
+  <!-- Main content -->
+
+  <!-- /.content -->
+</div>
+<!-- main End -->
+<!-- /Footer -->
+<%- include("../conn/copyright.ejs") %> 
+<%- include("../conn/footer.ejs") %>

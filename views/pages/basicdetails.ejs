@@ -1,0 +1,129 @@
+<!-- /header -->
+<%- include("../conn/header.ejs") %>
+<section class="content">
+  <div class="container mt-3 pt-3">
+    <h1 style="text-align: center" class="mb-3 pb-3">Basic Details</h1>
+    <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-8">
+        <form>
+          <div class="form-row">
+            <div class="col-md-6 mb-3">
+              <label for="validationDefault01">Email</label>
+              <input
+                type="text"
+                class="form-control"
+                id="validationDefault01"
+                placeholder="Ex:abc@email.com"
+                required
+              />
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="validationDefault02">Contect Details</label>
+              <input
+                type="text"
+                class="form-control"
+                id="validationDefault02"
+                placeholder="Content Details"
+                required
+              />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col-md-6 mb-3">
+              <label for="validationDefault01">Organization</label>
+              <input
+                type="text"
+                class="form-control"
+                id="validationDefault01"
+                placeholder="Organization"
+                required
+              />
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="validationDefault01">Education</label>
+              <input
+                type="text"
+                class="form-control"
+                id="validationDefault01"
+                placeholder="Education"
+                required
+              />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col-md-6 mb-3">
+              <label for="validationDefault01">Date of Birth</label>
+              <input
+                type="date"
+                class="form-control"
+                id="validationDefault01"
+                placeholder="Date of Birth"
+                required
+              />
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="validationDefault01">Country</label>
+              <input
+                type="text"
+                class="form-control"
+                id="validationDefault01"
+                placeholder="Country"
+                required
+              />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col-md-6 mb-3">
+              <label for="validationDefault03">Address</label>
+              <input
+                type="text"
+                class="form-control"
+                id="validationDefault03"
+                placeholder="Address"
+                required
+              />
+            </div>
+            <div class="col-md-3 mb-3">
+              <label for="validationDefault04">City</label>
+              <input
+                type="text"
+                class="form-control"
+                id="validationDefault04"
+                placeholder="city"
+                required
+              />
+            </div>
+            <div class="col-md-3 mb-3">
+              <label for="validationDefault05">State</label>
+              <input
+                type="text"
+                class="form-control"
+                id="validationDefault05"
+                placeholder="State"
+                required
+              />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col-md-12 mb-3">
+              <label for="validationDefault01">Profile picture</label>
+              <input
+                type="file"
+                class="form-control"
+                id="validationDefault01"
+                placeholder="uploade"
+                required
+              />
+            </div>
+            </div>
+          <button class="btn btn-primary" type="submit">Submit</button>
+        </form>
+      </div>
+      <div class="col-md-2"></div>
+    </div>
+  </div>
+</section>
+
+<!-- /Footer -->
+<%- include("../conn/footer.ejs") %>

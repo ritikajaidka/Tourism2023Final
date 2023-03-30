@@ -1,0 +1,66 @@
+<!-- /header -->
+<%- include("../conn/header.ejs") %>
+ <%- include("../conn/top.ejs") %>
+<!-- Main Sidebar Container -->
+<%- include("../conn/navebar.ejs") %>
+
+<!-- Main Start -->
+
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <h3>Booking Details</h3>
+            </div>
+          </div>
+          <!-- /.card -->
+
+          <div class="card">
+            <!-- /.card-header -->
+            <div class="card-body">
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th>Id</th>
+                    <th>Package name</th>
+                    <th>Passenger Name</th>
+                    <th>Booked Sloat</th>
+                    <th>Booking Date</th>
+                    <th>Invoice</th>
+                  </tr>
+                </thead>
+                <tbody>
+                     <tr>
+                         <td>1</td>
+                         <td>Abcd</td>
+                         <td>Anubhav</td>
+                         <td>4</td>
+                         <td>12/10/2023</td>
+                         <td><a href="#">InVoice</a></td>
+                     </tr>
+                </tbody>
+              </table>
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+  </section>
+
+  <!-- Main content -->
+
+  <!-- /.content -->
+</div>
+<!-- main End -->
+<!-- /Footer -->
+<%- include("../conn/copyright.ejs") %> 
+<%- include("../conn/footer.ejs") %>

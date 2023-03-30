@@ -1,0 +1,83 @@
+<%- include("../conn/header.ejs") %>
+ <%- include("../conn/top.ejs") %>
+<!-- Main Sidebar Container -->
+<%- include("./navbar.ejs") %>
+
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <h3>Tourist List</h3>
+            </div>
+          </div>
+          <!-- /.card -->
+
+          <div class="card">
+            <!-- /.card-header -->
+            <div class="card-body">
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th>Id</th>
+                    <th> Name</th>
+                    <th>Email</th>
+                    <th>No.of like/Dislike</th>
+                    <th>Date of joining</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% if(tourists.length>0){ %>
+                  <% for(var i=0; i<tourists.length; i++){  %>
+                  <tr>
+                    <td><%=i+1 %></td>
+                    <td><%=tourists[i].touristName %></td>
+                    <td><%=tourists[i].touristEmail %></td>
+                    <% var likes = 0; var dislikes=0; %>
+                    <% for(var t = 0; t<tourists[i].blogsAction.length; t++){ %>
+                    <% if(tourists[i].blogsAction[t].likedislike === "like"){ %>
+                    <%  likes=likes+1%>
+                    <% }else{ %>
+                    <%  dislikes=dislikes+1 %>
+                    <% } %>
+                    <% } %>
+                    <td>
+                        <i class="fas fa-thumbs-up"></i> <%=likes %> &nbsp;&nbsp;
+                        <i class="fas fa-thumbs-down"></i> <%=dislikes %>
+                    </td>
+                    <% var eventDate = new Date(tourists[i].createdAt); %>
+                    <%let dates =JSON.stringify(eventDate) %> <% dates = dates.slice(1,11) %>
+                    <td><%=dates %></td>
+                  
+                  </tr>
+                  <% } %>
+                  <% }else{ %>
+                  <tr>
+                    <td colspan="3">No Tourist Found</td>
+                  </tr>
+                  <% } %>
+                </tbody>
+              </table>
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+  </section>
+
+  <!-- Main content -->
+
+  <!-- /.content -->
+</div>
+<!-- main End -->
+<!-- /Footer -->
+<%- include("../conn/copyright.ejs") %>
+ <%- include("../conn/footer.ejs") %>

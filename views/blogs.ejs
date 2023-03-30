@@ -1,0 +1,331 @@
+<%- include("./conn/header.ejs") %>
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap");
+
+  .img_blog {
+    max-width: 100%;
+    display: block;
+    object-fit: cover;
+  }
+
+  .blog_card {
+    display: flex;
+    flex-direction: column;
+    width: clamp(19rem, calc(19rem + 2vw), 19rem);
+    overflow: hidden;
+    box-shadow: 0 0.1rem 1rem rgba(0, 0, 0, 0.1);
+    border-radius: 1em;
+    background: #ece9e6;
+    background: linear-gradient(to right, #ffffff, #ece9e6);
+  }
+  .blog_card1 {
+    display: flex;
+    flex-direction: column;
+
+    overflow: hidden;
+    box-shadow: 0 0.1rem 1rem rgba(0, 0, 0, 0.1);
+    border-radius: 1em;
+    background: #ece9e6;
+    background: linear-gradient(to right, #ffffff, #ece9e6);
+  }
+
+  .blogcard_body {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .blog_tag {
+    align-self: flex-start;
+    padding: 0.25em 0.75em;
+    border-radius: 1em;
+    font-size: 0.75rem;
+  }
+  .readmore {
+    border-radius: 0.5em;
+    font-size: 0.45rem;
+  }
+  .tag + .tag {
+    margin-left: 0.5em;
+  }
+
+  .tag-red {
+    background: #cb2d3e;
+    background: linear-gradient(to bottom, #ef473a, #cb2d3e);
+    color: #fafafa;
+  }
+  .tag-blue {
+    background: #087df3;
+    color: #fafafa;
+  }
+  a {
+    text-decoration: none;
+    outline: none;
+  }
+
+  .blogcard_body h4 {
+    font-size: 1.5rem;
+    text-transform: capitalize;
+  }
+
+  .blog_footer {
+    display: flex;
+    padding: 0.3rem;
+    margin-top: auto;
+  }
+
+  .user_blog {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .user__image_blog {
+    border-radius: 50%;
+  }
+
+  .user__info_blog > small {
+    color: #666;
+  }
+
+  .info li {
+    list-style: none;
+    font-size: 12px;
+    color: #888888;
+    display: inline-block;
+    margin-right: 20px;
+    position: relative;
+  }
+
+  .blog__sidebar__item {
+    margin-bottom: 65px;
+  }
+  .blog__sidebar__item:last-child {
+    margin-bottom: 0;
+  }
+  .blog__sidebar__item h5 {
+    font-size: 16px;
+    color: #111111;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding-left: 20px;
+    position: relative;
+    margin-bottom: 25px;
+  }
+  .blog__sidebar__item h5:before {
+    position: absolute;
+    left: 0;
+    top: 5px;
+    height: 14px;
+    width: 10px;
+    background: rgba(63, 112, 238, 0.3);
+    content: "";
+  }
+</style>
+<!-- Nav Bar Start -->
+<%- include("./frontviewComm/navbar.ejs") %>
+<!-- NavBar  End -->
+<header class="py-5 bg-light border-bottom mb-4">
+  <div class="container mt-5">
+    <div class="text-center">
+      <h1 class="fw-bolder">Welcome to <strong>Wanderlust</strong></h1>
+      <p class="lead fw-normal text-muted mb-0">
+        Blogs from our <strong>Guides</strong>
+      </p>
+    </div>
+  </div>
+</header>
+<!--  All Blog Body -->
+<div class="container" style="max-width: 1400px">
+  <div class="row" style="justify-content: space-between;">
+    <% if(blogs.length>0){ %>
+    <div class="col-lg-9">
+      <div class="card blog_card1">
+        <div class="card__header blog_header">
+          <img
+            src="/profile/<%=blogs[0].blogImage %>"
+            alt="card__image"
+            class="card__image img_blog"
+            width="1200"
+            height="300"
+          />
+        </div>
+        <div class="card__body blogcard_body">
+           <div class="alltegs"  style="display: flex;">
+          <%if(blogs[0].blogTag.length>0){ %>
+            <% for(var t =0; t<blogs[0].blogTag.length;t++){ %>
+          <span class="blog_tag tag-blue mr-2"  style="display: flex"><%=blogs[0].blogTag[t]  %></span>
+            <% } %>
+          <% }else{ %>
+          <span class="blog_tag tag-red">Latest</span>
+          <% } %>
+        </div>
+          <h4><%=blogs[0].blogTitle %></h4>
+          <p>
+            <%=blogs[0].blogContent.substring(0, 200) %>...
+          </p>
+          <div class="info mb-3" style="display: flex; justify-content: end;  padding: 0.7rem">
+            <li style="list-style: none">By <span><%=blogs[0].blogAuthor.guideName %></span></li>
+            <% var  eventDate = new Date(blogs[0].createdAt); %>
+            <%let dates = JSON.stringify(eventDate) %>
+           <% dates = dates.slice(1,11) %>
+            <li style="list-style: none"><%=dates %></li>
+            <li style="list-style: none"><%=blogs[0].blogViews %> views</li>
+          </div>
+          <a
+        href="/blog/<%=blogs[0]._id %>"
+        style="outline: none; text-decoration: none"
+        class="blog_tag tag-blue text-white"
+      >
+        Read more
+      </a>
+        </div>
+        
+      </div>
+      <% if(blogs.length>1){ %>
+        
+      <div class="row ml-2">
+       
+        <% for(var i=1; i<blogs.length; i++){ %>
+        <!-- Blog Card Strat -->
+
+        <div class="card blog_card m-2 p-2">
+          <div class="card__header blog_header">
+            <img
+              src="/profile/<%=blogs[i].blogImage %>"
+              alt="card__image"
+              class="card__image img_blog"
+              width="600"
+            />
+          </div>
+          <div class="card__body blogcard_body">
+            <div class="alltegs"  style="display: flex;">
+             <%if(blogs[i].blogTag.length>0){ %>
+            <% for(var t =0; t<blogs[i].blogTag.length;t++){ %>
+          <span class="blog_tag tag-blue mr-2" style="display: flex"><%=blogs[i].blogTag[t]  %></span>
+            <% } %>
+          <% }else{ %>
+          <span class="blog_tag tag-red">Latest</span>
+          <% } %>
+            </div>
+            <h5><%=blogs[i].blogTitle %></h5>
+            <p>
+              <%=blogs[i].blogContent.substring(0, 200) %>...
+            </p>
+          </div>
+          <div class="info mb-3" style="display: flex; padding: 0.7rem">
+            <li style="list-style: none">By <span><%=blogs[i].blogAuthor.guideName %></span></li>
+            <% var  eventDate = new Date(blogs[i].createdAt); %>
+            <%let dates = JSON.stringify(eventDate) %>
+           <% dates = dates.slice(1,11) %>
+            <li style="list-style: none"><%=dates %></li>
+            <li style="list-style: none"><%=blogs[i].blogViews %> views</li>
+          </div>
+
+          <a
+            href="/blog/<%=blogs[i]._id %>"
+            style="outline: none; text-decoration: none"
+            class="blog_tag tag-blue text-white"
+          >
+            Read more
+          </a>
+        </div>
+        <!-- Blog Card End -->
+        <% } %>
+      </div>
+      <% } %>
+    </div>
+    <% }else{ %>
+    <h4>No blogs added!</h4>
+    <% } %>
+    <div class="col-lg-3">
+      <div class="card mb-4">
+      
+        <div class="card-header">Search</div>
+        <div class="card-body">
+          <div class="input-group">
+          <form action="/blog/search" method="POST" style="display: flex;">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Search for..."
+              name="search"
+            />
+            <span class="input-group-append">
+              <button class="btn btn-secondary" type="submit">
+                Go!
+              </button>
+            </span>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="card mb-4">
+        <div class="card-header">Categories</div>
+        <div class="card-body">
+          <div class="row">
+            <a href="/blog/tag/latest">
+              <div class="blog_tag tag-blue m-2 text-center">Latest</div>
+            </a>
+            <a href="/blog/tag/tour">
+              <div class="blog_tag tag-blue m-2 text-center">Tour</div>
+            </a>
+            <a href="/blog/tag/travel">
+              <div class="blog_tag tag-blue m-2 text-center">Travel</div>
+            </a>
+            <a href="/blog/tag/tourist">
+              <div class="blog_tag tag-blue m-2 text-center">Tourist</div>
+            </a>
+            <a href="/blog/tag/latest">
+              <div class="blog_tag tag-blue m-2 text-center">Latest</div>
+            </a>
+            <a href="/blog/tag/hiking">
+              <div class="blog_tag tag-blue m-2 text-center">Hiking</div>
+            </a>
+            <a href="/blog/tag/citytour">
+              <div class="blog_tag tag-blue m-2 text-center">Citytour</div> </a
+            ><a href="/blog/tag/nature">
+              <div class="blog_tag tag-blue m-2 text-center">Nature</div>
+            </a>
+            <a href="/blog/tag/love">
+              <div class="blog_tag tag-blue m-2 text-center">Love</div>
+            </a>
+            <a href="/blog/tag/bike">
+              <div class="blog_tag tag-blue m-2 text-center">Bike</div>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="blog__sidebar__item">
+        <h5>Popular posts</h5>
+        <% if(trendingBlogs.length>0){ %>
+        <%  for(var i =0; i<trendingBlogs.length; i++){%>
+        <div class="blog__sidebar__recent mb-4" style="display: flex">
+          <!-- <a href="#" class="blog__sidebar__recent__item"  style="text-decoration: none;"> -->
+          <div class="blog__sidebar__recent__item__pic mr-5">
+            <a href="/blog/<%=trendingBlogs[i]._id%>">
+              <img src="/profile/<%=trendingBlogs[i].blogImage%>" height="100px" width="100px" alt="blog" />
+            </a>
+          </div>
+          <div class="blog__sidebar__recent__item__text">
+            <a href="/blog/<%=trendingBlogs[i]._id%>" style="text-decoration: none">
+              <h5><%=trendingBlogs[i].blogTitle%></h5>
+              <% var dtt = new Date(trendingBlogs[i].createdAt); %>
+              <span><%=dtt.toDateString()%></span>
+             
+            </a>
+          </div>
+          <!-- </a> -->
+        </div>
+
+        <% } %>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</div>
+<!--  All Blog Body -->
+
+<!-- Footer Start -->
+<%- include("./frontviewComm/footer.ejs") %>
+<!-- Footer End -->

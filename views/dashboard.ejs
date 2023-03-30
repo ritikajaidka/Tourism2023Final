@@ -1,0 +1,99 @@
+<!-- /header -->
+<%- include("conn/header.ejs") %> 
+<%- include("conn/top.ejs") %>
+<!-- Main Sidebar Container -->
+<%- include("conn/navebar.ejs") %>
+
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-12">
+          <header class="py-5 bg-light border-bottom mb-4">
+            <div class="container">
+              <div class="text-center">
+                <h1 class="fw-bolder">
+                  Welcome to <strong>WanderLust</strong>
+                </h1>
+              </div>
+            </div>
+          </header>
+          <div>
+            <canvas id="myChart"  width="700"
+            height="300"
+            aria-label="chart"
+            role="img"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /.container-fluid -->
+  </section>
+</div>
+<!-- /Footer -->
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+const mydata=[2,3,4,2,1,2,30];
+var ctx = document.getElementById("myChart").getContext("2d");
+var myChart = new Chart(ctx, {
+  type: "bar",
+  data: {
+    labels: ["Vancouver", "Calgary", "Halifax", "Toronto", "Regina", "Qubec"],
+    datasets: [
+      {
+        label: "Like",
+        data: mydata,
+        // Background Color
+        backgroundColor: [
+          "rgba(255, 99, 132, 0.2)",
+          "rgba(54, 162, 235, 0.2)",
+          "rgba(255, 206, 86, 0.2)",
+          "rgba(75, 192, 192, 0.2)",
+          "rgba(153, 102, 255, 0.2)",
+          "rgba(255, 159, 64, 0.2)",
+        ],
+        // Border Color
+        borderColor: [
+          "rgba(255, 99, 132, 1)",
+          "rgba(54, 162, 235, 1)",
+          "rgba(255, 206, 86, 1)",
+          "rgba(75, 192, 192, 1)",
+          "rgba(153, 102, 255, 1)",
+          "rgba(255, 159, 64, 1)",
+        ],
+
+        // Border Width
+        borderWidth: 1,
+      },
+      //Data Set 2
+      {
+        //  Chart Label
+        label: "Dislike",
+        data: [10, 8, 3, 7, 8, 9],
+
+        // Background Color
+        backgroundColor: [
+          "rgba(255, 97, 132, 0.2)",
+          "rgba(54, 16, 235, 0.2)",
+          "rgba(255, 26, 86, 0.2)",
+          "rgba(75, 12, 192, 0.2)",
+          "rgba(153, 2, 255, 0.2)",
+          "rgba(255, 19, 64, 0.2)",
+        ],
+      },
+    ],
+  },
+
+  options: {
+    animation: {
+      duration: 2000,
+      easing: "easeInOutBounce",
+    },
+  },
+});
+</script>
+<%- include("conn/footer.ejs") %>

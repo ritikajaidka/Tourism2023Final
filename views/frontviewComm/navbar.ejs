@@ -1,0 +1,130 @@
+<style>
+  /* Navbar section */
+
+  .navbar {
+    width: 100%;
+    height: 65px;
+    position: fixed;
+    line-height: 65px;
+    text-align: center;
+    justify-content: space-between;
+    z-index: 1;
+  }
+
+  .navbar div.logo {
+    float: left;
+    width: auto;
+    height: auto;
+  }
+
+  .navbar div.logo a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 1.5rem;
+  }
+
+  .navbar div.logo a:hover {
+    color: #00e676;
+  }
+
+  .navbar div.main_list {
+    height: 65px;
+    float: right;
+  }
+
+  .navbar div.main_list ul {
+    width: 100%;
+    height: 65px;
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .navbar div.main_list ul li {
+    width: auto;
+    height: 65px;
+    padding: 0;
+    padding-right: 3rem;
+  }
+
+  .navbar div.main_list ul li a {
+    text-decoration: none;
+    color: #fff;
+    line-height: 65px;
+    font-size: 1.4rem;
+  }
+
+  .affix {
+    padding: 0;
+    background-color: #111;
+  }
+</style>
+<nav class="navbar">
+  <div class="container-fluid ml-2 mr-2">
+    <div class="logo">
+      <a href="/">Wanderlust</a>
+    </div>
+    <div id="mainListDiv" class="main_list">
+      <ul class="navlinks">
+        <li><a href="/">Home</a></li>
+        <li><a href="/packages">Package</a></li>
+        <li><a href="/blogs">Learn From Experts</a></li>
+        <li><a href="/about">FAQ</a></li>
+        <% if(logintype==="none"){ %>
+        <li><a href="/login_as">Login</a></li>
+        <% } else if(logintype==="guide"){ %>
+        <li><a href="/guide/dashboard">Dashboard</a></li>
+        <li><a href="/"><%= user.guideName %></a></li>
+        <!-- <li>
+          <form action="/guide/logout" method="post">
+            <button type="submit">Logout</button>
+          </form>
+        </li> -->
+        <% } else if(logintype==="admin"){ %>
+        <li><a href="/">Admin</a></li>
+        <li><a href="/admin/dashboard">Dashboard</a></li>
+        <!-- <li>
+          <form action="/guide/logout" method="post">
+            <button type="submit">Logout</button>
+          </form>
+        </li> -->
+        <% }else if(logintype==="tourist") {%>
+        <li><a href="/tourist/dashboard">Dashboard</a></li>
+        <li><a href=""><%= user.touristName %></a></li>
+        <!-- <li>
+          <form action="/tourist/logout" method="post">
+            <button
+              type="submit"
+              class="logout_btn"
+              style="
+                outline: none;
+                background: transparent;
+                border: none;
+                color: white;
+              "
+            >
+              <p>Logout</p>
+            </button>
+          </form>
+        </li> -->
+        <% } %>
+      </ul>
+    </div>
+  </div>
+</nav>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script>
+  if (window.location.href == "http://localhost:5000/") {
+    $(window).scroll(function () {
+      if ($(document).scrollTop() > 50) {
+        $(".navbar").addClass("affix");
+        console.log("OK");
+      } else {
+        $(".navbar").removeClass("affix");
+      }
+    });
+  } else {
+    $(".navbar").addClass("affix");
+  }
+</script>

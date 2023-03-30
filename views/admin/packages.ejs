@@ -1,0 +1,110 @@
+<%- include("../conn/header.ejs") %> <%- include("../conn/top.ejs") %>
+<!-- Main Sidebar Container -->
+<%- include("./navbar.ejs") %>
+
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <h3>Package Request</h3>
+            </div>
+          </div>
+          <!-- /.card -->
+
+          <div class="card">
+            <!-- /.card-header -->
+            <div class="card-body">
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th>Id</th>
+                    <th>Package Name</th>
+                    <th>Posted By</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                    <th>View</th>
+                    <th>Action</th>
+                   
+                  </tr>
+                </thead>
+                <tbody>
+                  <% if(packages.length>0){ %>
+                  <% for(var i=0;i<packages.length;i++){ %>
+                  <tr>
+                    <td><%=i+1%> </td>
+                    <td><%=packages[i].packageTitle %></td>
+                    <td><%=packages[i].packageGuide.guideName %></td>
+                    <% var eventDate = new Date(packages[i].createdAt); %>
+                     <%let dates =JSON.stringify(eventDate) %> <% dates = dates.slice(1,11) %> 
+                    <td><%=dates%></td>
+                   
+                    <td>
+                      <% if(packages[i].status==="pending") {%>
+                       <button   style=" border: none;" type="button" class="btn-sm btn-block bg-gradient-warning  text-white" >In Process</button>
+                      <% }else if(packages[i].status==="approved"){ %>
+                      <button   style=" border: none;" type="button" class="btn-sm btn-block bg-gradient-success  text-white" >Approved</button>
+                      <% }else{ %>
+                      <button   style=" border: none;" type="button" class="btn-sm btn-block bg-gradient-danger  text-white" >DisApproved</button>
+                      <% } %>
+                      </td>
+                    <td>
+                      <div style="display: flex; ">
+
+                        <a   style=" border: none;" href="/package/<%=packages[i]._id%>" class="btn-sm btn-block bg-gradient-warning  text-white" >View</a>
+                      </div>
+                    </td>
+                    <td>
+                        <div style="display: flex;justify-content: space-evenly; ">
+                          <% if(packages[i].status==="pending"){ %>
+                            <div class=" mr-3">
+                            <form action="/admin/package/action" method="post"> 
+                              <input type="hidden" name="packageId" value="<%=packages[i]._id%>">
+                              <input type="hidden" name="action" value="approved">
+                              <button  style=" border: none;" type="submit" class="btn-sm btn-block bg-gradient-success  text-white "  > Approved</button>
+                            </form>
+                          </div>
+                              <div>
+                                <form action="/admin/package/action" method="post"> 
+                                  <input type="hidden" name="packageId" value="<%=packages[i]._id%>">
+                                  <input type="hidden" name="action" value="disapproved">
+                                  <button  style=" border: none;" type="submit" class="btn-sm btn-block bg-gradient-danger  text-white" > DisApproved</button>
+ 
+                              </div>
+                          </div>
+                          <% }else { %>
+                            <p><%=packages[i].status %></p>
+                          <% } %>
+                    </td>
+                  </tr>
+                  <% } %>
+                  <% } else{%>
+                  <tr>
+                    <td colspan="7">No Package Found</td>
+                  </tr>
+                  <% } %>
+                </tbody>
+              </table>
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+  </section>
+
+  <!-- Main content -->
+
+  <!-- /.content -->
+</div>
+<!-- main End -->
+<!-- /Footer -->
+<%- include("../conn/copyright.ejs") %> 
+<%- include("../conn/footer.ejs") %>
