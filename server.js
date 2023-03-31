@@ -1,9 +1,19 @@
+#!/usr/bin/env nodejs
+var http = require("http");
+http
+  .createServer(function (req, res) {
+    res.writeHead(200, { "Content-Type": "text/plain" });
+    res.end("Hello World\n");
+  })
+  .listen(8080, "localhost");
+console.log("Server running at http://localhost:8080/");
+
 require("./db/db");
 const express = require("express");
 const bodyParser = require("body-parser");
 const session = require("express-session");
 const MongoDBstore = require("connect-mongodb-session")(session);
-const PORT = 5000;
+const PORT = 8080;
 require("dotenv").config();
 //model
 const Guide = require("./model/guide");
