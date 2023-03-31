@@ -156,6 +156,6 @@ app.get("/about", (req, res) => {
 app.use((req, res) => {
   res.status(404).render("pages/error404");
 });
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+// app.listen(PORT, () => {
+//   console.log(`Radhe sham from my gaming pc Server is running on port ${PORT}`);
+// });
